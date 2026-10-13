@@ -50,8 +50,12 @@ Add-Type -AssemblyName System.IO.Compression
 $archive = [System.IO.Compression.ZipFile]::OpenRead($zipPath)
 try {
     $entries = @($archive.Entries | ForEach-Object FullName)
-    if (@($entries | Where-Object { $_ -notin @('gymL.exe','README.txt','THIRD_PARTY_LICENSES.txt','gymL_data/') }).Count -ne 0) { throw 'Unexpected file in distribution' }
-    if ($entries.Count -ne 4) { throw 'Missing portable package files' }
+    if (@($entries | Where-Object { $_ -notin @('gymL.exe','README.txt','LICENSE','THIRD_PARTY_LICENSES.txt','gymL_data/') }).Count -ne 0) { throw 'Unexpected file in distribution' }
+    if ($entries.Count -ne 5) { throw 'Missing portable package files' }
+    $licenseReader = [System.IO.StreamReader]::new($archive.GetEntry('LICENSE').Open())
+    try {
+        if ($licenseReader.ReadToEnd() -ne [System.IO.File]::ReadAllText((Join-Path $PSScriptRoot '../LICENSE'))) { throw 'Packaged application license differs from source license' }
+    } finally { $licenseReader.Dispose() }
 } finally { $archive.Dispose() }
 $result = [ordered]@{ architecture='x64'; subsystem='Windows GUI'; resources=$resourceTypes; dllImports=$imports; personalIdentifierScan='pass'; zipEntries=$entries; executableBytes=$bytes.Length; sha256=(Get-FileHash -LiteralPath $exePath -Algorithm SHA256).Hash }
 $result | ConvertTo-Json

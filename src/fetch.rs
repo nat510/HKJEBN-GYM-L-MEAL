@@ -61,7 +61,11 @@ impl Response {
 impl Session {
     pub fn new(seconds: u64) -> Result<Self, String> {
         unsafe {
-            let agent = wide("gymL/1.0");
+            // Chrome 156 is the newest Windows Stable entry on 2026-10-13.
+            // Chrome freezes Windows 11's OS token and its minor/build/patch tokens.
+            let agent = wide(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+            );
             let handle = Handle::new(WinHttpOpen(
                 agent.as_ptr(),
                 WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY,
@@ -558,4 +562,39 @@ pub fn fetch_image(dir: &Path, url: &str) -> Result<ImageBytes, String> {
         bytes: response.body,
         downloaded: true,
     })
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn winhttp_session_uses_current_windows_chrome_user_agent() {
+        let session = Session::new(5).unwrap();
+        let mut size = 0;
+        unsafe {
+            WinHttpQueryOption(
+                session.handle.0,
+                WINHTTP_OPTION_USER_AGENT,
+                null_mut(),
+                &mut size,
+            );
+            assert!(size > 0);
+            let mut value = vec![0u16; size as usize / 2];
+            assert_ne!(
+                WinHttpQueryOption(
+                    session.handle.0,
+                    WINHTTP_OPTION_USER_AGENT,
+                    value.as_mut_ptr().cast(),
+                    &mut size,
+                ),
+                0
+            );
+            let length = value.iter().position(|&ch| ch == 0).unwrap_or(value.len());
+            assert_eq!(
+                String::from_utf16(&value[..length]).unwrap(),
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36"
+            );
+        }
+    }
 }

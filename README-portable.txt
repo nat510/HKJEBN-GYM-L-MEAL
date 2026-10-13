@@ -1,4 +1,4 @@
-gymL - portable Windows app
+gymL v1.1 - portable Windows app
 
 Windows 10/11 x64. Extract the ZIP into a writable folder and run gymL.exe.
 Keep gymL_data beside the EXE when moving the app. No installation is required.
@@ -36,4 +36,14 @@ To build from Rust source, run scripts/build-portable.ps1 in PowerShell.
 The build uses static CRT, LTO, stripped symbols and anonymous build paths.
 The supplied icon is embedded in the executable.
 
-THIRD_PARTY_LICENSES.txt contains dependency notices.
+License: GNU Affero General Public License version 3 or any later version
+(SPDX: AGPL-3.0-or-later). Copyright (C) 2026 HKJEBN-GYM-L-MEAL contributors.
+This program is distributed WITHOUT ANY WARRANTY. See LICENSE for the full terms.
+THIRD_PARTY_LICENSES.txt contains dependency notices under their own licenses.
+
+Complete corresponding source for this release, including build scripts:
+https://github.com/nat510/HKJEBN-GYM-L-MEAL/tree/v1.1
+Source archive:
+https://github.com/nat510/HKJEBN-GYM-L-MEAL/archive/refs/tags/v1.1.zip
+
+Retailer requests use the Windows x64 Chrome 156 User-Agent as of 2026-10-13.

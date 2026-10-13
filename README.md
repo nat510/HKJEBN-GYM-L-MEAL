@@ -2,11 +2,11 @@
 
 樓上凍品價格比較工具 **gymL**，以 Rust 與原生 Win32 控制項製作的 Windows 可攜程式。
 
-## 下載 v1.0
+## 下載 v1.1
 
-**[下載可攜 ZIP](https://github.com/nat510/HKJEBN-GYM-L-MEAL/releases/download/v1.0/gymL-portable-windows-x64.zip)** · [下載 gymL.exe](https://github.com/nat510/HKJEBN-GYM-L-MEAL/releases/download/v1.0/gymL.exe) · [完整發行頁](https://github.com/nat510/HKJEBN-GYM-L-MEAL/releases/tag/v1.0)
+**[下載可攜 ZIP](https://github.com/nat510/HKJEBN-GYM-L-MEAL/releases/download/v1.1/gymL-portable-windows-x64.zip)** · [下載 gymL.exe](https://github.com/nat510/HKJEBN-GYM-L-MEAL/releases/download/v1.1/gymL.exe) · [完整發行頁](https://github.com/nat510/HKJEBN-GYM-L-MEAL/releases/tag/v1.1)
 
-[SHA-256 校驗檔](https://github.com/nat510/HKJEBN-GYM-L-MEAL/releases/download/v1.0/SHA256SUMS.txt) · [第三方授權聲明](https://github.com/nat510/HKJEBN-GYM-L-MEAL/releases/download/v1.0/THIRD_PARTY_LICENSES.txt)
+[SHA-256 校驗檔](https://github.com/nat510/HKJEBN-GYM-L-MEAL/releases/download/v1.1/SHA256SUMS.txt) · [第三方授權聲明](https://github.com/nat510/HKJEBN-GYM-L-MEAL/releases/download/v1.1/THIRD_PARTY_LICENSES.txt)
 
 ## 使用方式
 
@@ -67,3 +67,19 @@ cargo clippy --all-targets --locked -- -D warnings
 ```
 
 GitHub Actions 在 `main` 更新及 pull request 時驗證 Windows 建置。手動執行 **gymL Windows release** 並指定版本標籤，即可發行經驗證的 EXE、可攜 ZIP、校驗檔及授權聲明。
+
+## 授權
+
+Copyright (C) 2026 HKJEBN-GYM-L-MEAL contributors.
+
+程式原始碼及 EXE 採用 **GNU Affero General Public License 第 3 版或任何後續版本**（SPDX: AGPL-3.0-or-later），詳見 [LICENSE](LICENSE)。程式不提供任何擔保。相依套件保留各自授權，聲明隨可攜套件提供。
+
+[本版本完整對應原始碼](https://github.com/nat510/HKJEBN-GYM-L-MEAL/tree/v1.1)／[原始碼 ZIP](https://github.com/nat510/HKJEBN-GYM-L-MEAL/archive/refs/tags/v1.1.zip) 包含建置腳本。
+
+## 擷取識別
+
+商品、優惠、推廣及圖片的來源請求使用 2026-10-13 核對的 Windows x64 Chrome 156 User-Agent：
+
+    Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36
+
+Windows 11 的 Chrome 仍使用 Windows NT 10.0 作為相容性識別，次要版本、組建及修補版本固定為 0。此版本採用固定字串。

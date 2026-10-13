@@ -9,7 +9,7 @@ on:
       tag:
         description: Release tag
         required: true
-        default: v1.0
+        default: v1.1
 
 permissions:
   contents: read
@@ -57,7 +57,7 @@ jobs:
             Write-Output "Release $env:RELEASE_TAG already exists; retaining its assets."
             exit 0
           }
-          $assets = @('gymL.exe','dist/gymL-portable-windows-x64.zip','dist/gymL/THIRD_PARTY_LICENSES.txt')
+          $assets = @('gymL.exe','dist/gymL-portable-windows-x64.zip','dist/gymL/THIRD_PARTY_LICENSES.txt','LICENSE')
           $lines = foreach ($path in $assets) {
             $hash = (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant()
             "$hash  $([System.IO.Path]::GetFileName($path))"
