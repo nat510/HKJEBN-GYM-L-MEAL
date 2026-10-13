@@ -70,7 +70,7 @@ GitHub Actions 在 `main` 更新及 pull request 時驗證 Windows 建置。手�
 
 ## 授權
 
-Copyright (C) 2026 HKJEBN-GYM-L-MEAL contributors.
+Copyright (C) 2026 JEBN-GYM-L-MEAL contributors.
 
 程式原始碼及 EXE 採用 **GNU Affero General Public License 第 3 版或任何後續版本**（SPDX: AGPL-3.0-or-later），詳見 [LICENSE](LICENSE)。程式不提供任何擔保。相依套件保留各自授權，聲明隨可攜套件提供。
 
